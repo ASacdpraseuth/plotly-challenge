@@ -3,7 +3,7 @@
 function metadata(sample) {
 
     // grab metadata from samples
-    d3.json('samples.json').then((data) => {
+    d3.json('data/samples.json').then((data) => {
 
         var metadata= data.metadata;
         var resultsarray= metadata.filter(sampleobject => sampleobject.id == sample);
@@ -21,7 +21,7 @@ function metadata(sample) {
 function charts(sample) {
 
     // grab sample data for plots
-    d3.json('samples.json').then((data) => {
+    d3.json('data/samples.json').then((data) => {
         var samples = data.samples;
         var resultsarray = samples.filter(sampleobject => sampleobject.id == sample);
         var result = resultsarray[0];
@@ -79,13 +79,11 @@ function charts(sample) {
     });
 }
 
-function init() {
 
-    // Grab a reference to the dropdown select element
-    var selector = d3.select('#selDataset');
-    
-    // Use the list of sample names to populate the select options
-    d3.json('samples.json').then((data) => {
+function start() {
+
+    // get sample names for the dropdown
+    d3.json('data/samples.json').then(function(data)  {
         var names = data.names;
         var dropDown = d3.select('#selDataset');
         dropDown.selectAll('option')
@@ -93,17 +91,18 @@ function init() {
             .enter()
             .append('option')
             .text(function(d) {
-                return `${d}`
+                return d;
             });
         });
-};
+}
     
 function optionChanged(newSample) {
 
-    // Fetch new data each time a new sample is selected
+    // new data each time a sample is selected
     charts(newSample);
     metadata(newSample);
 }
 
-// Initialize the dashboard
-init();
+//console.log(start)
+
+start();
