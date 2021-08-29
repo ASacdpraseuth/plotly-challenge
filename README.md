@@ -1,3 +1,19 @@
+## Getting it to run
+1. Clone or download zip of repo
+
+2. Open main directory in command line
+
+3. Run local webserver
+```
+python -m http.server
+```
+
+4. Open browser and go to link provided
+
+note: Link will most likely be 'localhost:5000' or 'localhost:8000'
+
+---
+
 # Plot.ly Homework - Belly Button Biodiversity
 
 ![Bacteria by filterforge.com](Images/bacteria.jpg)
